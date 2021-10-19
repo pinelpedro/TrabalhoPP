@@ -14,7 +14,7 @@
 #include <string.h>
 #include <ctype.h>
 
-const int MD = 0; // Selecionador de modo PLAY(0) / CORR(1)
+const int MD = 1; // Selecionador de modo PLAY(0) / CORR(1)
 
 
 void initOcean(char ocean[6][6]);
@@ -35,7 +35,7 @@ main()
 
     int i = 0;
     int j = 0;
-    char tentativa[2];
+    char tentativa[20];
     int ativo =1;
     int coluna = 0;
     int fileira = 0;
@@ -96,6 +96,7 @@ main()
                             if(i== fileira && j == coluna)
                                 {
                                     t--;
+                                    ocean[i][j] = 'W';
                                     printf("\nO torpedo afundou na agua \n");
                                 }
                         }
