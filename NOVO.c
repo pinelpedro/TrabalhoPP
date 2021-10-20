@@ -14,28 +14,31 @@
 #include <string.h>
 #include <ctype.h>
 
-const int MD = 1; // Selecionador de modo PLAY(0) / CORR(1)
+ int MD = 1; // Selecionador de modo PLAY(0) / CORR(1)
 
-
+int argsOk (int argc, char *argv[]);
 void initOcean(char ocean[6][6]);
 void showOcean(char ocean[6][6]);
+void mantemOcean(char ocean[6][6]);
 void showInventory (int d, int s, int t);
 void submarinesIntoOcean (char ocean[6][6]);
 
 
 
 int
-main()
+main(int argc, char *argv[])
 {
 
+
+    argsOk(argc, argv);
     char ocean[6][6];
     int d = 0;
     int s = 3;
-    int t = 6;
+    int t = 0;
 
     int i = 0;
     int j = 0;
-    char tentativa[20];
+    char tentativa[2];
     int ativo =1;
     int coluna = 0;
     int fileira = 0;
@@ -48,6 +51,7 @@ main()
 
     while(ativo!=0)
     {
+        mantemOcean(ocean);
         showOcean(ocean);
         showInventory (d,s,t);
 
@@ -127,7 +131,6 @@ main()
 void
 submarinesIntoOcean (char ocean[6][6])
 {
-    int loop = 0;
     int X = rand() %5;
     int Y = rand() %5;
     while(X == 0 || Y == 0)
@@ -136,7 +139,6 @@ submarinesIntoOcean (char ocean[6][6])
          Y = rand() %5;
     }
 
-    printf("X:%d  Y:%d \n",X,Y);
 
     if(ocean[X+1][Y]=='S'&& X-1 != 0)
         {
@@ -237,5 +239,31 @@ initOcean(char ocean[6][6])
     ocean[0][4] = '4';
     ocean[0][5] = '5';
 
+
+}
+
+int
+argsOk (int argc, char *argv[])
+{
+
+    return 0;
+}
+
+void
+mantemOcean(char ocean[6][6])
+{
+    ocean[0][0] = ' ';
+
+    ocean[1][0] = 'A';
+    ocean[2][0] = 'B';
+    ocean[3][0] = 'C';
+    ocean[4][0] = 'D';
+    ocean[5][0] = 'E';
+
+    ocean[0][1] = '1';
+    ocean[0][2] = '2';
+    ocean[0][3] = '3';
+    ocean[0][4] = '4';
+    ocean[0][5] = '5';
 
 }
