@@ -1,8 +1,8 @@
 /*
-    Cria um jogo similar ao Batalha Naval. Nesse jogo, uma frota está escondida no oceano,
-    portanto, você não consegue perceber onde estão as naves que compõem a frota. O objetivo
-    do jogo é você destruir a frota, isto é, afundar todas as naves com a quantidade de torpedos
-    disponível.
+    Cria um jogo similar ao Batalha Naval. Nesse jogo, uma frota estÃ¡ escondida no oceano,
+    portanto, vocÃª nÃ£o consegue perceber onde estÃ£o as naves que compÃµem a frota. O objetivo
+    do jogo Ã© vocÃª destruir a frota, isto Ã©, afundar todas as naves com a quantidade de torpedos
+    disponÃ­vel.
     por Jhully Vitoria, 2021
     por Pedro Pinel, 2021
     por Luis Arthur, 2021
@@ -15,7 +15,7 @@
 
 int MD = 1; // Selecionador de modo PLAY(0) / CORR(1)
 
-// -Protótipos-
+// -ProtÃ³tipos-
 int argsOk (int argc, char *argv[]);
 void initOcean(char ocean[6][6]);
 void showOcean(char ocean[6][6]);
@@ -43,18 +43,18 @@ main(int argc, char *argv[])
 
     if( (r = argsOk(argc, argv)) != 0)
     {
-        printf("deu ruim");
+        printf("deu ruim erro=%d",r);
         return r;
     }
     if( strcmp(argv[1], "-t") == 0)
     {
         t = atoi(argv[2]);
-	m = atoi(argv[4]);   
+        MD = atoi(argv[4]);
     }
-    else
+    if(strcmp(argv[1], "-m") == 0)
     {
-        m = atoi(argv[2]);
-	t = atoi(argv[4]);   
+        MD = atoi(argv[2]);
+        t = atoi(argv[4]);
     }
 
     initOcean(ocean);
@@ -258,25 +258,26 @@ argsOk (int argc, char *argv[])
 {
     if(argc < 5)
     {
-        return 3;	
+        return 1;
     }
     if( (strcmp(argv[1], "-m") != 0) && strcmp(argv[1], "-t") != 0)
     {
-        return 4;
+        return 2;
     }
     if( (strcmp(argv[3], "-m") != 0) && strcmp(argv[3], "-t") != 0)
     {
+        return 3;
+    }
+    if( isdigit(*argv[2]) == 0)
+    {
         return 4;
     }
-    if( isdigit(argv[2]) == 0)
+    if( isdigit(*argv[4]) == 0)
     {
         return 5;
     }
-    if( isdigit(argv[4]) == 0)
-    {
-        return 5;
-    }
-    
+
+
     return 0;
 }
 
