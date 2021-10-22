@@ -47,7 +47,6 @@ main(int argc, char *argv[])
         errorMsg(r);
         return r;
     }
-
     if(strcmp(argv[1], "-t") == 0)
     {
         t = atoi(argv[2]);
@@ -60,12 +59,12 @@ main(int argc, char *argv[])
     }
 
     initOcean(ocean);
-
+	
     for(i=1;i<=s;i++)
     {
         submarinesIntoOcean (ocean);
     }
-
+	
     while(ativo!=0)
     {
         mantemOcean(ocean);
@@ -112,7 +111,6 @@ main(int argc, char *argv[])
                         printf("\nO torpedo acertou um submarino!\n");
                     }
                 }
-
                 if (ocean[i][j] == ' ')
                 {
                     if(i== fileira && j == coluna)
@@ -122,14 +120,12 @@ main(int argc, char *argv[])
                         printf("\nO torpedo afundou na agua \n");
                     }
                 }
-
                 if (s <=0)
                 {
                     ativo = 0;
                     printf("\nParabens, voce destruiu toda a frota!  \n");
                     return 0;
                 }
-
                 if (t <= 0)
                 {
                     ativo = 0;
@@ -143,7 +139,8 @@ main(int argc, char *argv[])
     return 0;
 }
 
-
+// --submarinesIntoOcean--
+// posiciona os submarinos no Oceano de forma pseudo-aleátoria
 
 void
 submarinesIntoOcean (char ocean[6][6])
@@ -176,6 +173,8 @@ submarinesIntoOcean (char ocean[6][6])
     ocean[X][Y] = 'S';
 }
 
+// --showInventory--
+// apresenta a quantidade dedestruidores, submarinos e torpedos restantes para o jogador
 
 void
 showInventory (int d, int s, int t)
@@ -183,6 +182,8 @@ showInventory (int d, int s, int t)
     printf("\n\n Destruidores: %d\n Submarinos--: %d\n Torepedos---: %d\n",d,s,t);
 }
 
+// --showOcean--
+// apresenta o oceano após o lançamento de um torpedo. De acordo com o modo escolhido no MD
 
 void
 showOcean(char ocean[6][6])
@@ -223,6 +224,9 @@ showOcean(char ocean[6][6])
     }
 }
 
+// --initOcean--
+// inicia um oceano com espaço ('') em todas as posições
+
 void
 initOcean(char ocean[6][6])
 {
@@ -252,6 +256,9 @@ initOcean(char ocean[6][6])
     ocean[0][4] = '4';
     ocean[0][5] = '5';
 }
+
+// --argsOk--
+// verifica se os argumentos passados estão de acordo com o que se espera no programa
 
 int
 argsOk (int argc, char *argv[])
@@ -284,6 +291,9 @@ argsOk (int argc, char *argv[])
     return 0;
 }
 
+// --errorMsg--
+// apresenta em stderr com uma mensagem de texto descrevendo o erro de acordo com o valor de x
+
 void
 errorMsg(int x)
 {
@@ -304,6 +314,9 @@ errorMsg(int x)
 	fprintf(stderr, "Aconteceu algum erro\n");
     }
 }
+
+// --mantemOcean--
+// Mantem os valores que precisam ser lidos no oceano
 
 void
 mantemOcean(char ocean[6][6])
