@@ -14,12 +14,11 @@
 #include <string.h>
 #include <ctype.h>
 
-int MD = 1; // Selecionador de modo PLAY(0) / CORR(1)
 
 // -Protótipos-
 int argsOk(int argc, char *argv[]);
 void errorMsg(int x);
-void initOcean(char ocean[6][6]);
+void initOcean(char ocean[6][6], int m);
 void showOcean(char ocean[6][6]);
 void mantemOcean(char ocean[6][6]);
 void showInventory(int d, int s, int t);
@@ -42,7 +41,7 @@ main(int argc, char *argv[])
     int r = 0;          // Valor do erro (argsOK)
 
 	
-    if( (r = argsOk(argc, argv)) != 0)
+    if((r = argsOk(argc, argv)) != 0)
     {
         errorMsg(r);
         return r;
@@ -50,45 +49,45 @@ main(int argc, char *argv[])
     if(strcmp(argv[1], "-t") == 0)
     {
         t = atoi(argv[2]);
-	MD = atoi(argv[4]);   
+	m = atoi(argv[4]);   
     }
     else
     {
-        MD = atoi(argv[2]);
+        m = atoi(argv[2]);
 	t = atoi(argv[4]);   
     }
 
     initOcean(ocean);
 	
-    for(i=1;i<=s;i++)
+    for(i = 1; i <= s; i++)
     {
         submarinesIntoOcean (ocean);
     }
 	
-    while(ativo!=0)
+    while(ativo != 0)
     {
         mantemOcean(ocean);
-        showOcean(ocean);
+        showOcean(ocean, m);
         showInventory (d,s,t);
 
         printf("onde deseja soltar o torpedo?  ");
-        scanf("%s",&tentativa);
+        scanf("%s", &tentativa);
 
         coluna = tentativa[1] - '0';
 
-        if(tentativa[0]=='A')
+        if(tentativa[0] =='A')
         {
             fileira = 1;
         }
-        if(tentativa[0]=='B')
+        if(tentativa[0] =='B')
         {
             fileira = 2;
         }
-        if(tentativa[0]=='C')
+        if(tentativa[0] =='C')
         {
             fileira = 3;
         }
-        if(tentativa[0]=='D')
+        if(tentativa[0] =='D')
         {
             fileira = 4;
         }
@@ -120,7 +119,7 @@ main(int argc, char *argv[])
                         printf("\nO torpedo afundou na agua \n");
                     }
                 }
-                if (s <=0)
+                if (s <= 0)
                 {
                     ativo = 0;
                     printf("\nParabens, voce destruiu toda a frota!  \n");
@@ -147,21 +146,22 @@ submarinesIntoOcean (char ocean[6][6])
 {
     int X = rand() %5;
     int Y = rand() %5;
+	
     while(X == 0 || Y == 0)
     {
         X = rand() %5;
         Y = rand() %5;
     }
 
-    if(ocean[X+1][Y]=='S'&& X-1 != 0)
+    if(ocean[X+1][Y] == 'S'&& X-1 != 0)
     {
         X--;
     }
-    if(ocean[X-1][Y]=='S'&& X+1 < 6)
+    if(ocean[X-1][Y] == 'S'&& X+1 < 6)
     {
         X++;
     }
-    if(ocean[X][Y+1]=='S'&& Y-1 != 0)
+    if(ocean[X][Y+1] == 'S'&& Y-1 != 0)
     {
         Y--;
     }
@@ -186,8 +186,9 @@ showInventory (int d, int s, int t)
 // apresenta o oceano após o lançamento de um torpedo. De acordo com o modo escolhido no MD
 
 void
-showOcean(char ocean[6][6])
+showOcean(char ocean[6][6], int MD)
 {
+    int MD = 1;  // Selecionador de modo PLAY(0) / CORR(1)
     int i = 0;
     int j = 0;
     for (i = 0; i < 6; i++)
@@ -204,7 +205,7 @@ showOcean(char ocean[6][6])
             {
                 if(MD == 0)
                 {
-                    if(ocean[i][j]=='S')
+                    if(ocean[i][j] == 'S')
                     {
                         printf("   |");
                     }
