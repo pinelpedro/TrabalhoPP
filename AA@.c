@@ -39,8 +39,8 @@ main(int argc, char *argv[])
     int j = 0;
     char tentativa[2];  // Posição escolhida pelo jogador
     int ativo = 1;      // Condição para manter o jogo
-    int coluna = 0;
-    int fileira = 0;
+    int coluna = 0;     // usado para converter a posição que o usuario digita na coluna
+    int fileira = 0;    // usado para converter a posição que o usuario digita na fileira
     int r = 0;          // Valor do erro (argsOK)
 
 
@@ -305,16 +305,16 @@ argsOk (int argc, char *argv[])
     {
         return 2;
     }
-    else if( (strcmp(argv[1], "-t") == 0) && strcmp(argv[3], "-m") != 0)
+     if( (strcmp(argv[1], "-t") == 0) && strcmp(argv[3], "-m") != 0)
     {
         return 2;
     }
     else if ((((strcmp(argv[1], "-t") != 0) && (strcmp(argv[3], "-m") != 0))))
     {
-	if ((((strcmp(argv[1], "-m") != 0) && (strcmp(argv[3], "-t") != 0))))
-	{
-            return 2;
-	}
+        if ((((strcmp(argv[1], "-m") != 0) && (strcmp(argv[3], "-t") != 0))))
+        {
+                return 2;
+        }
     }
     if((isdigit(*argv[2]) == 0) && (isdigit(*argv[4]) == 0))
     {
@@ -322,10 +322,10 @@ argsOk (int argc, char *argv[])
     }
     if((strcmp(argv[2], "PLAY") != 0) && (strcmp(argv[2], "CORR") != 0))
     {
-	if((strcmp(argv[4], "PLAY") != 0) && (strcmp(argv[4], "CORR") != 0))
-    	{
-            return 3;
-    	}
+        if((strcmp(argv[4], "PLAY") != 0) && (strcmp(argv[4], "CORR") != 0))
+            {
+                return 3;
+            }
     }
     return 0;
 }
