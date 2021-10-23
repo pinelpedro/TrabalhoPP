@@ -294,39 +294,43 @@ argsOk (int argc, char *argv[])
             return 3;
         }
     }
-    else if((((strcmp(argv[1], "-t") == 0) && (strcmp(argv[3], "-m") == 0))))
+    else if( (((strcmp(argv[1], "-t") == 0) && (strcmp(argv[3], "-m") == 0))) )
     {
         if((strcmp(argv[4], "PLAY") != 0) || (strcmp(argv[4], "CORR") != 0))
         {
             return 3;
         }
     }
-    else if( (strcmp(argv[1], "-m") == 0) && strcmp(argv[3], "-t") != 0)
+    else if( ((strcmp(argv[1], "-t")) == 0) && ((strcmp(argv[3], "-m")) != 0))
     {
         return 2;
     }
-     if( (strcmp(argv[1], "-t") == 0) && strcmp(argv[3], "-m") != 0)
+    else if( ((strcmp(argv[1], "-m")) == 0) && ((strcmp(argv[3], "-t")) != 0))
     {
         return 2;
     }
-    else if ((((strcmp(argv[1], "-t") != 0) && (strcmp(argv[3], "-m") != 0))))
+    else if( ((strcmp(argv[1], "-t")) != 0) && ((strcmp(argv[3], "-m")) == 0))
     {
-        if ((((strcmp(argv[1], "-m") != 0) && (strcmp(argv[3], "-t") != 0))))
+        return 2;
+    }
+    else if( ((strcmp(argv[1], "-m")) != 0) && ((strcmp(argv[3], "-t")) == 0))
+    {
+        return 2;
+    }
+	
+    else if( ((strcmp(argv[1], "-m")) != 0) && ((strcmp(argv[3], "-t")) != 0))
+    {
+        if( ((strcmp(argv[1], "-t")) != 0) && ((strcmp(argv[3], "-m")) != 0))
         {
-                return 2;
+            return 2;
         }
     }
-    if((isdigit(*argv[2]) == 0) && (isdigit(*argv[4]) == 0))
+	
+    if((isdigit(argv[2]) == 0) && (isdigit(argv[4]) == 0))
     {
         return 3;
     }
-    if((strcmp(argv[2], "PLAY") != 0) && (strcmp(argv[2], "CORR") != 0))
-    {
-        if((strcmp(argv[4], "PLAY") != 0) && (strcmp(argv[4], "CORR") != 0))
-            {
-                return 3;
-            }
-    }
+	
     return 0;
 }
 
