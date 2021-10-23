@@ -11,6 +11,8 @@
 
 int MD = 0;
 
+const int O = 6;
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -20,16 +22,16 @@ int MD = 0;
 // -Protótipos-
 int argsOk(int argc, char *argv[]);
 void errorMsg(int x);
-void initOcean(char ocean[6][6]);
-void showOcean(char ocean[6][6], int MD);
-void mantemOcean(char ocean[6][6]);
+void initOcean(char ocean[O][O]);
+void showOcean(char ocean[O][O]);
+void mantemOcean(char ocean[O][O]);
 void showInventory(int d, int s, int t);
-void submarinesIntoOcean(char ocean[6][6]);
+void submarinesIntoOcean(char ocean[O][O]);
 
 int
 main(int argc, char *argv[])
 {
-    char ocean[6][6]; // Oceano
+    char ocean[O][O]; // Oceano
     int d = 0;        // Quantidade destroyers
     int s = 3;        // Quantidade submarinos
     int t = 0;        // Quantidades torpedos
@@ -69,7 +71,7 @@ main(int argc, char *argv[])
     while(ativo != 0)
     {
         mantemOcean(ocean);
-        showOcean(ocean, MD);
+        showOcean(ocean);
         showInventory (d,s,t);
 
         printf("onde deseja soltar o torpedo?  ");
@@ -144,7 +146,7 @@ main(int argc, char *argv[])
 // posiciona os submarinos no Oceano de forma pseudo-aleátoria
 
 void
-submarinesIntoOcean (char ocean[6][6])
+submarinesIntoOcean (char ocean[O][O])
 {
     int X = rand() %5;
     int Y = rand() %5;
@@ -159,7 +161,7 @@ submarinesIntoOcean (char ocean[6][6])
     {
         X--;
     }
-    if(ocean[X-1][Y] == 'S'&& X+1 < 6)
+    if(ocean[X-1][Y] == 'S'&& X+1 < O)
     {
         X++;
     }
@@ -167,7 +169,7 @@ submarinesIntoOcean (char ocean[6][6])
     {
         Y--;
     }
-    if(ocean[X][Y-1]=='S'&& Y+1 < 6)
+    if(ocean[X][Y-1]=='S'&& Y+1 < O)
     {
         Y++;
     }
@@ -188,16 +190,16 @@ showInventory (int d, int s, int t)
 // apresenta o oceano após o lançamento de um torpedo. De acordo com o modo escolhido no MD
 
 void
-showOcean(char ocean[6][6], int MD)
+showOcean(char ocean[O][O])
 {
     //int MD = 1;  // Selecionador de modo PLAY(0) / CORR(1)
     int i = 0;
     int j = 0;
-    for (i = 0; i < 6; i++)
+    for (i = 0; i < O; i++)
     {
         printf("\n");
 
-        for(j = 0; j < 6; j++)
+        for(j = 0; j < O; j++)
         {
             if (i == 0)
             {
@@ -231,7 +233,7 @@ showOcean(char ocean[6][6], int MD)
 // inicia um oceano com espaço ('') em todas as posições
 
 void
-initOcean(char ocean[6][6])
+initOcean(char ocean[O][O])
 {
     int i = 0;
     int j = 0;
@@ -321,7 +323,7 @@ errorMsg(int x)
 // Mantem os valores que precisam ser lidos no oceano
 
 void
-mantemOcean(char ocean[6][6])
+mantemOcean(char ocean[O][O])
 {
     ocean[0][0] = ' ';
 
