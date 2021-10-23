@@ -301,22 +301,20 @@ argsOk (int argc, char *argv[])
             return 3;
         }
     }
+    else if( (strcmp(argv[1], "-m") == 0) && strcmp(argv[3], "-t") != 0)
+    {
+        return 2;
+    }
+    else if( (strcmp(argv[1], "-t") == 0) && strcmp(argv[3], "-m") != 0)
+    {
+        return 2;
+    }
     else if ((((strcmp(argv[1], "-t") != 0) && (strcmp(argv[3], "-m") != 0))))
     {
-        if((((strcmp(argv[1], "-m") != 0) && (strcmp(argv[3], "-t") != 0))))
-            {
-
-                return 2;
-            }
-    }
-     else if( (strcmp(argv[1], "-m") == 0) && strcmp(argv[3], "-t") != 0)
-    {
-
-        return 2;
-    }
-     else if( (strcmp(argv[1], "-t") == 0) && strcmp(argv[3], "-m") != 0)
-    {
-        return 2;
+	if ((((strcmp(argv[1], "-m") != 0) && (strcmp(argv[3], "-t") != 0))))
+	{
+            return 2;
+	}
     }
     if((isdigit(*argv[2]) == 0) && (isdigit(*argv[4]) == 0))
     {
@@ -326,7 +324,6 @@ argsOk (int argc, char *argv[])
     {
 	if((strcmp(argv[4], "PLAY") != 0) && (strcmp(argv[4], "CORR") != 0))
     	{
-
             return 3;
     	}
     }
