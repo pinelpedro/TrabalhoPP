@@ -9,7 +9,6 @@
 */
 
 int MD = 0;
-
 const int O = 6;
 
 #include <stdio.h>
@@ -19,21 +18,21 @@ const int O = 6;
 
 
 // -Protótipos-
-int argsOk(int argc, char *argv[]);
-void errorMsg(int x);
-void initOcean(char ocean[O][O]);
-void showOcean(char ocean[O][O]);
-void mantemOcean(char ocean[O][O]);
-void showInventory(int d, int s, int t);
-void submarinesIntoOcean(char ocean[O][O]);
+int argsOk(int argc, char *argv[]);            // verifica se os argumentos passados estão de acordo com o que se espera no programa.
+void errorMsg(int x);                          // apresenta em stderr com uma mensagem de texto descrevendo o erro de acordo com o valor de x.
+void initOcean(char ocean[O][O]);              // inicia um oceano com espaço ('') em todas as posições.
+void showOcean(char ocean[O][O]);              // apresenta o oceano após o lançamento de um torpedo. De acordo com o modo escolhido no MD.
+void mantemOcean(char ocean[O][O]);            // Mantem os valores que precisam ser lidos no oceano.
+void showInventory(int d, int s, int t);       // apresenta a quantidade dedestruidores, submarinos e torpedos restantes para o jogador.
+void submarinesIntoOcean(char ocean[O][O]);    // posiciona os submarinos no Oceano de forma pseudo-aleátoria.
 
 int
 main(int argc, char *argv[])
 {
-    char ocean[O][O]; // Oceano
-    int d = 0;        // Quantidade destroyers
-    int s = 3;        // Quantidade submarinos
-    int t = 0;        // Quantidades torpedos
+    char ocean[O][O];  // Oceano
+    int d = 0;         // Quantidade destroyers
+    int s = 3;         // Quantidade submarinos
+    int t = 0;         // Quantidades torpedos
 
     int i = 0;
     int j = 0;
@@ -346,19 +345,19 @@ errorMsg(int x)
 {
     if(x == 1)
     {
-	fprintf(stderr, "Faltam argumentos\n");
+	fprintf(stderr, "Faltam argumentos. \n");
     }
     else if(x == 2)
     {
-	fprintf(stderr, "Valores invalidos\n");
+	fprintf(stderr, "Os parametros passados nao correspondem ao programa. \n");
     }
     else if(x == 3)
     {
-	fprintf(stderr, "O valor passado nao e um digito inteiro\n");
+	fprintf(stderr, "Os valores passados nao correspondem ao programa. \n");
     }
     else
     {
-	fprintf(stderr, "Aconteceu algum erro\n");
+	fprintf(stderr, "Aconteceu algum erro. \n");
     }
 }
 
